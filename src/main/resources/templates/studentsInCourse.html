@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="GET">
+    <div th:each="student: ${list}">
+        <input th:type="radio" name="student" th:value="${student.getName()}" th:id="${student.getName()}">
+        <label th:for="${student.getName()}"><th:block th:text="${student.getName()}"></th:block></label>
+        <label th:for="${student.getSurname()}"><th:block th:text="${student.getSurname()}"></th:block></label>
+    </div>
+</form>
+</body>
+</html>

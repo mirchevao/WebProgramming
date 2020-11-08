@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Welcome and Choose a Course</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Student List</h1>
+</header>
+<main>
+    <h2>Choose course:</h2>
+    <form th:method="POST">
+        <div th:each="student: ${listStudents}">
+            <input th:type="radio" name="student" th:value="${student.getName()}" th:id="${student.getName()}">
+            <label th:for="${student.getName()}"><th:block th:text="${student.getName()}"></th:block></label>
+        </div>
+        <a href="/CreateStudent">Submit</a>
+    </form>
+
+    <form th:action="@{/servlet/CreateStudent}" th:method="POST">
+        <label for='username'>Username:</label><input id='username' type='text' name='username'/><br/>
+        <label for='password'>Password:</label><input id='password' type='password' name='password'/><br/>
+        <label for='name'>Name:</label><input id='name' type='text' name='name'/><br/>
+        <label for='name'>Surname:</label><input id='surname' type='text' name='surname'/><br/>
+        <input type='submit' value='Submit'/>
+    </form>
+
+</main>
+</body>
+</html>
