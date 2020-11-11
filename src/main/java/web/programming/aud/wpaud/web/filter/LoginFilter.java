@@ -28,6 +28,7 @@ public class LoginFilter implements Filter {
 
         if(user == null && !"/login".equals(path)) {
             response.sendRedirect("/login");
+
         } else {
             filterChain.doFilter(servletRequest,servletResponse);
         }

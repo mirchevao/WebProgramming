@@ -3,10 +3,7 @@ package web.programming.aud.wpaud.bootstrap;
 
 import lombok.Getter;
 import org.springframework.stereotype.Component;
-import web.programming.aud.wpaud.model.Category;
-import web.programming.aud.wpaud.model.Course;
-import web.programming.aud.wpaud.model.Student;
-import web.programming.aud.wpaud.model.User;
+import web.programming.aud.wpaud.model.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -20,11 +17,16 @@ public class DataHolder {
     public static List<Student> students = new ArrayList<>();
     public static List<Course> courses = new ArrayList<>();
     public static List<User> users = new ArrayList<User>();
+    public static List<Manufacturer> manufacturers = new ArrayList<>();
+    public static List<Product> products = new ArrayList<>();
+
+
 
 
 
     @PostConstruct
     public void init() {
+
         categories.add(new Category("Movies", "Movies category"));
         categories.add(new Category("Books", "Books category"));
         categories.add(new Category("Software", "Software category"));
@@ -39,7 +41,15 @@ public class DataHolder {
         users.add(new User("kostovas", "sandra123", "sandra123", "Sandra", "Kostova"));
         users.add(new User("n.atanasovska", "nadica123", "nadica123", "Nadica", "Atanasovska"));
 
+        Category category = new Category("Sport", "Sports category");
+        categories.add(category);
 
+        Manufacturer manufacturer = new Manufacturer("Nike", "NY NY");
+        manufacturers.add(manufacturer);
+        manufacturers.add(new Manufacturer("Apple", "LA LA"));
+
+        products.add(new Product("Ball", 350.0, 3, category, manufacturer));
+        products.add(new Product("Harry Potter", 500.0, 3, category, manufacturer));
 
     }
 }
