@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="thymeleaf-category-servlet",urlPatterns = "/servlet/thymeleaf/category")
+@WebServlet(name="categoryservlet",urlPatterns = "/servlet/thymeleaf/category")
 public class ThymeleafCategoryServlet extends HttpServlet {
 
     private final CategoryService categoryService;
