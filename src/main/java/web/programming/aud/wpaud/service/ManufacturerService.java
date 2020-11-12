@@ -10,4 +10,8 @@ public interface ManufacturerService {
     public List<Manufacturer> findAll();
 
     public Optional<Manufacturer> findById(Long id);
+
+    public Optional<Manufacturer> save(String name, String Address);
+
+    public boolean deleteById(Long id);
 }

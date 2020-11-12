@@ -19,10 +19,7 @@ public class DataHolder {
     public static List<User> users = new ArrayList<User>();
     public static List<Manufacturer> manufacturers = new ArrayList<>();
     public static List<Product> products = new ArrayList<>();
-
-
-
-
+    public static List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
     @PostConstruct
     public void init() {
