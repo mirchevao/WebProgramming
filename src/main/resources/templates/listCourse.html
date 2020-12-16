@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Courses</title>
+
+</head>
+<body>
+
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12" th:if="${courses.size() > 0}">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Course name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Students</th>
+                        <th scope="col">Teacher</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="course : ${courses}">
+                        <td th:text="${course.getName()}"></td>
+                        <td th:text="${course.getDescription()}"></td>
+                        <td th:each="student : ${students}" th:text="${student.getName()}"></td>
+                        <td th:text="${course.getTeacher().getName()}"></td>
+
+                        <td class="text-right">
+                            <form th:action="@{'/courses/delete/{id}' (id=${course.getCourseId()})}" th:method="DELETE">
+                                <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash">Delete</i></button>
+                            </form>
+                            <a th:href="@{'/courses/edit-form/{id}' (id=${course.getCourseId()})}"
+                               class="btn btn-sm btn-info"><i class="fa fa-trash">Edit</i></a>
+                            <form th:action="@{'/courses/add-form/{id}' (id=${course.getCourseId()})}">
+                                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-trash">Add new course</i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <form th:action="@{'/courses/add'}">
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-trash">Add new course</i></button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

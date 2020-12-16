@@ -1,4 +1,4 @@
-package web.programming.aud.wpaud.web.filter;
+/*package web.programming.aud.wpaud.web.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -26,8 +26,8 @@ public class LoginFilter implements Filter {
 
         String path = request.getServletPath();
 
-        if(user == null && !"/login".equals(path)) {
-            response.sendRedirect("/login");
+        if(user == null && !"/courses".equals(path)) {
+            response.sendRedirect("/courses");
 
         } else {
             filterChain.doFilter(servletRequest,servletResponse);
@@ -38,4 +38,4 @@ public class LoginFilter implements Filter {
     public void destroy() {
 
     }
-}
+}*/

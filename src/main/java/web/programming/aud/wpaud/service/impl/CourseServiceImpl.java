@@ -1,23 +1,27 @@
 package web.programming.aud.wpaud.service.impl;
 
 import org.springframework.stereotype.Service;
-import web.programming.aud.wpaud.model.Course;
-import web.programming.aud.wpaud.model.Student;
+import web.programming.aud.wpaud.model.*;
+import web.programming.aud.wpaud.model.exceptions.NoTeacherFoundException;
 import web.programming.aud.wpaud.repository.CourseRepository;
+import web.programming.aud.wpaud.repository.StudentRepository;
+import web.programming.aud.wpaud.repository.TeacherRepository;
 import web.programming.aud.wpaud.service.CourseService;
-import web.programming.aud.wpaud.service.StudentService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CourseServiceImpl implements CourseService {
 
     private final CourseRepository courseRepository;
-    private final StudentService studentService;
+    private final StudentRepository studentRepository;
+    private final TeacherRepository teacherRepository;
 
-    public CourseServiceImpl(CourseRepository courseRepository, StudentService studentService) {
+    public CourseServiceImpl(CourseRepository courseRepository, StudentRepository studentRepository, TeacherRepository teacherRepository) {
         this.courseRepository = courseRepository;
-        this.studentService = studentService;
+        this.studentRepository = studentRepository;
+        this.teacherRepository = teacherRepository;
     }
 
     @Override
@@ -34,4 +38,24 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> listAll() {
         return courseRepository.findAllCourses();
     }
+
+    @Override
+    public Course save(String name, String desc, Long teacherId) {
+
+        Teacher teacher = teacherRepository.findById(teacherId).orElseThrow(() -> new NoTeacherFoundException(teacherId));
+        return courseRepository.save(new Course(name, desc, teacher));
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
+        courseRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Course> getById(Long id) {
+        return courseRepository.findById(id);
+    }
+
+
 }

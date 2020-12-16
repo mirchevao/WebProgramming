@@ -1,6 +1,5 @@
 package web.programming.aud.wpaud.repository;
 
-import org.attoparser.trace.MarkupTraceEvent;
 import org.springframework.stereotype.Repository;
 import web.programming.aud.wpaud.bootstrap.DataHolder;
 import web.programming.aud.wpaud.model.Course;
@@ -8,17 +7,25 @@ import web.programming.aud.wpaud.model.Student;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Repository
 public class CourseRepository {
+
+    private final StudentRepository studentRepository;
+    private final TeacherRepository teacherRepository;
+
+    public CourseRepository(StudentRepository studentRepository, TeacherRepository teacherRepository) {
+        this.studentRepository = studentRepository;
+        this.teacherRepository = teacherRepository;
+    }
+
     public List<Course> findAllCourses() {
         return DataHolder.courses;
     }
 
     public Optional<Course> findById(Long courseId) {
-      return DataHolder.courses.stream().filter(r -> r.getCourseId().equals(courseId)).findFirst();
+      return  DataHolder.courses.stream().filter(r -> r.getCourseId().equals(courseId)).findFirst();
     }
 
     public List<Student> findAllStudentsByCourse(Long courseId) {
@@ -35,4 +42,16 @@ public class CourseRepository {
         DataHolder.courses.add(course);
         return course;
     }
+
+    public Course save(Course course) {
+        DataHolder.courses
+                .removeIf(i -> i.getName().equals(course.getName()));
+        DataHolder.courses.add(course);
+        return course;
+    }
+
+    public void deleteById(Long id) {
+        DataHolder.courses.removeIf(i -> i.getCourseId().equals(id));
+    }
+
 }
