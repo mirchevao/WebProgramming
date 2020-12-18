@@ -3,7 +3,7 @@ package web.programming.aud.wpaud.service.impl;
 import org.springframework.stereotype.Service;
 import web.programming.aud.wpaud.bootstrap.DataHolder;
 import web.programming.aud.wpaud.model.Manufacturer;
-import web.programming.aud.wpaud.repository.InMemoryManufacturerRepository;
+import web.programming.aud.wpaud.repository.jpa.ManufacturerRepository;
 import web.programming.aud.wpaud.service.ManufacturerService;
 
 import java.util.List;
@@ -12,16 +12,16 @@ import java.util.Optional;
 @Service
 public class ManufacturerServiceImpl implements ManufacturerService {
 
-    private final InMemoryManufacturerRepository manufacturerRepository;
+    private final ManufacturerRepository manufacturerRepository;
 
-    public ManufacturerServiceImpl(InMemoryManufacturerRepository manufacturerRepository) {
+    public ManufacturerServiceImpl(ManufacturerRepository manufacturerRepository) {
 
         this.manufacturerRepository = manufacturerRepository;
     }
 
     @Override
     public List<Manufacturer> findAll() {
-        return manufacturerRepository.fingAll();
+        return manufacturerRepository.findAll();
     }
 
     @Override
@@ -31,13 +31,11 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     public Optional<Manufacturer> save(String name, String address) {
-        Manufacturer manufacturer = new Manufacturer(name, address);
-        DataHolder.manufacturers.add(manufacturer);
-        return Optional.of(manufacturer);
+        return Optional.of(this.manufacturerRepository.save(new Manufacturer(name, address)));
     }
 
     @Override
-    public boolean deleteById(Long id) {
-        return DataHolder.manufacturers.removeIf(i -> i.getId().equals(id));
+    public void deleteById(Long id) {
+        deleteById(id);
     }
 }

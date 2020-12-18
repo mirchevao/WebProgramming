@@ -3,13 +3,15 @@ package web.programming.aud.wpaud.service.impl;
 import org.springframework.stereotype.Service;
 import web.programming.aud.wpaud.model.*;
 import web.programming.aud.wpaud.model.exceptions.NoTeacherFoundException;
-import web.programming.aud.wpaud.repository.CourseRepository;
-import web.programming.aud.wpaud.repository.StudentRepository;
-import web.programming.aud.wpaud.repository.TeacherRepository;
+import web.programming.aud.wpaud.repository.jpa.CourseRepository;
+import web.programming.aud.wpaud.repository.jpa.StudentRepository;
+import web.programming.aud.wpaud.repository.jpa.TeacherRepository;
 import web.programming.aud.wpaud.service.CourseService;
+import web.programming.aud.wpaud.service.StudentService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -17,26 +19,25 @@ public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
     private final StudentRepository studentRepository;
     private final TeacherRepository teacherRepository;
+    private final StudentService studentService;
 
-    public CourseServiceImpl(CourseRepository courseRepository, StudentRepository studentRepository, TeacherRepository teacherRepository) {
+    public CourseServiceImpl(CourseRepository courseRepository, StudentRepository studentRepository, TeacherRepository teacherRepository, StudentService studentService) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
+        this.studentService = studentService;
     }
 
     @Override
     public List<Student> listStudentsByCourse(Long courseId) {
-        return courseRepository.findAllStudentsByCourse(courseId);
+        return courseRepository.findAllByCourseId(courseId);
     }
 
-    @Override
-    public Course addStudentInCourse(String username, Long courseId) {
-        return courseRepository.addStudentToCourse(new Student(username), new Course(courseId));
-    }
+
 
     @Override
     public List<Course> listAll() {
-        return courseRepository.findAllCourses();
+        return courseRepository.findAll();
     }
 
     @Override

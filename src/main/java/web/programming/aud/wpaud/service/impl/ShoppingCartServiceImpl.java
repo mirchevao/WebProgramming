@@ -8,9 +8,8 @@ import web.programming.aud.wpaud.model.exceptions.ProductAlreadyInShoppingCartEx
 import web.programming.aud.wpaud.model.exceptions.ProductNotFoundException;
 import web.programming.aud.wpaud.model.exceptions.ShoppingCartNotFoundException;
 import web.programming.aud.wpaud.model.exceptions.UserNotFoundException;
-import web.programming.aud.wpaud.repository.InMemoryProductRepository;
-import web.programming.aud.wpaud.repository.InMemoryShoppingCartRepository;
-import web.programming.aud.wpaud.repository.InMemoryUserRepository;
+import web.programming.aud.wpaud.repository.impl.InMemoryShoppingCartRepository;
+import web.programming.aud.wpaud.repository.impl.InMemoryUserRepository;
 import web.programming.aud.wpaud.service.ProductService;
 import web.programming.aud.wpaud.service.ShoppingCartService;
 

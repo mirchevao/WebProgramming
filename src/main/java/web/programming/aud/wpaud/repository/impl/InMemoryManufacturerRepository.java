@@ -1,4 +1,4 @@
-package web.programming.aud.wpaud.repository;
+package web.programming.aud.wpaud.repository.impl;
 
 import org.springframework.stereotype.Repository;
 import web.programming.aud.wpaud.bootstrap.DataHolder;

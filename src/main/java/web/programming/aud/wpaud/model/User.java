@@ -2,14 +2,22 @@ package web.programming.aud.wpaud.model;
 
 import lombok.Data;
 
+import javax.persistence.*;
+import java.util.List;
+
 @Data
+@Entity
+@Table(name = "shopusers")
 public class User {
 
+    @Id
     private String username;
     private String password;
     private String name;
     private String surname;
     private String repeatPassword;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<ShoppingCart> carts;
 
     public User(String username, String password, String repeatPassword, String name, String surname) {
         this.username = username;
@@ -20,4 +28,7 @@ public class User {
     }
 
 
+    public User() {
+
+    }
 }

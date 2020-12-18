@@ -1,10 +1,9 @@
 package web.programming.aud.wpaud.service.impl;
 
 import org.springframework.stereotype.Service;
-import web.programming.aud.wpaud.model.Manufacturer;
 import web.programming.aud.wpaud.model.Teacher;
-import web.programming.aud.wpaud.model.exceptions.NoTeacherFoundException;
-import web.programming.aud.wpaud.repository.TeacherRepository;
+import web.programming.aud.wpaud.repository.impl.IMTeacherRepository;
+import web.programming.aud.wpaud.repository.jpa.TeacherRepository;
 import web.programming.aud.wpaud.service.TeacherService;
 
 import java.util.List;

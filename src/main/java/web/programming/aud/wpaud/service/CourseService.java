@@ -10,7 +10,9 @@ public interface CourseService {
 
     List<Student> listStudentsByCourse(Long courseId);
 
-    Course addStudentInCourse(String username, Long courseId);
+    //Course addStudentInCourse(String username, Long courseId);
+
+
 
     List<Course> listAll();
 

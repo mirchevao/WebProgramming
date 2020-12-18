@@ -1,4 +1,4 @@
-package web.programming.aud.wpaud.repository;
+package web.programming.aud.wpaud.repository.impl;
 
 import org.springframework.stereotype.Repository;
 import web.programming.aud.wpaud.bootstrap.DataHolder;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Repository
-public class StudentRepository {
+public class IMStudentRepository {
     public List<Student> findAllStudents() {
         return DataHolder.students;
     }

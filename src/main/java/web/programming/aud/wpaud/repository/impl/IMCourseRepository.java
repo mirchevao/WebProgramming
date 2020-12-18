@@ -1,4 +1,4 @@
-package web.programming.aud.wpaud.repository;
+package web.programming.aud.wpaud.repository.impl;
 
 import org.springframework.stereotype.Repository;
 import web.programming.aud.wpaud.bootstrap.DataHolder;
@@ -10,12 +10,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
-public class CourseRepository {
+public class IMCourseRepository {
 
-    private final StudentRepository studentRepository;
-    private final TeacherRepository teacherRepository;
+    private final IMStudentRepository studentRepository;
+    private final IMTeacherRepository teacherRepository;
 
-    public CourseRepository(StudentRepository studentRepository, TeacherRepository teacherRepository) {
+    public IMCourseRepository(IMStudentRepository studentRepository, IMTeacherRepository teacherRepository) {
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
     }

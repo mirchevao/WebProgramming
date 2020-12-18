@@ -5,7 +5,7 @@ import web.programming.aud.wpaud.model.User;
 import web.programming.aud.wpaud.model.exceptions.InvalidArgumentException;
 import web.programming.aud.wpaud.model.exceptions.InvalidUserCredentialsException;
 import web.programming.aud.wpaud.model.exceptions.PasswordsDoNotMatchException;
-import web.programming.aud.wpaud.repository.InMemoryUserRepository;
+import web.programming.aud.wpaud.repository.impl.InMemoryUserRepository;
 import web.programming.aud.wpaud.service.AuthService;
 
 @Service
